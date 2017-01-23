@@ -25,17 +25,33 @@ var products = [
   new VideoGame('Super Smash Bros Melee', 63.90, 'Game Cube', 300, 2400)
 ];
 
-function findProducts(belowCost) {
-  var result = [];
-  if(belowCost) {
+function findProducts(criterias) {
+  var resultCost = [];
+  var resultDuration = [];
+
+  if(criterias.belowCost) {
     for (var i = products.length - 1; i >= 0; i--) {
       var product = products[i];
-      if(product.price <= belowCost) {
-        result.push(product);
+      if(product.price <= criterias.belowCost) {
+        resultCost.push(product);
       }
     }
+  } else {
+    resultCost = products;
   }
-  return result;
+
+  if(criterias.belowDuration) {
+    for (var i = resultCost.length - 1; i >= 0; i--) {
+      var product = resultCost[i];
+      if(product.getDuration() <= criterias.belowDuration) {
+        resultDuration.push(product);
+      }
+    }
+  } else {
+    resultDuration = resultCost;
+  }
+
+  return resultDuration;
 }
 
 function calculateTotalprice(products) {
