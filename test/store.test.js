@@ -25,3 +25,27 @@ describe('Store', function() {
   });
 
 });
+
+describe('Book', function() {
+
+  it('getDuration() should return average of minDuration and maxDuration', function() {
+    expect(store.products[1].getDuration()).to.be.equal(185);
+  });
+
+});
+
+describe('DVD', function() {
+
+  it('getDuration() should return runningTime', function() {
+    expect(store.products[8].getDuration()).to.be.equal(780);
+  });
+
+});
+
+describe('VideoGame', function() {
+
+  it('getDuration() should return average of minDuration and maxDuration', function() {
+    expect(store.products[12].getDuration()).to.be.equal(1050);
+  });
+
+});
