@@ -36,9 +36,9 @@ function findProducts(belowCost) {
 function calculateTotalprice(products) {
   var sum = 0;
   for (var i = products.length - 1; i >= 0; i--) {
-    sum += products[i].price;
+    sum += products[i].price * 100;
   }
-  return sum;
+  return sum / 100;
 }
 
 function toString(currency, rateCurrency) {
