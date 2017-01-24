@@ -26,32 +26,12 @@ var products = [
 ];
 
 function findProducts(criterias) {
-  var resultCost = [];
-  var resultDuration = [];
-
-  if(criterias.belowCost) {
-    for (var i = products.length - 1; i >= 0; i--) {
-      var product = products[i];
-      if(product.price <= criterias.belowCost) {
-        resultCost.push(product);
-      }
-    }
-  } else {
-    resultCost = products;
-  }
-
-  if(criterias.belowDuration) {
-    for (var i = resultCost.length - 1; i >= 0; i--) {
-      var product = resultCost[i];
-      if(product.getDuration() <= criterias.belowDuration) {
-        resultDuration.push(product);
-      }
-    }
-  } else {
-    resultDuration = resultCost;
-  }
-
-  return resultDuration;
+  let result = products.filter(function(product) {
+    return !criterias.belowCost || product.price <= criterias.belowCost;
+  }).filter(function(product) {
+    return !criterias.belowDuration || product.getDuration() <= criterias.belowDuration;
+  })
+  return result;
 }
 
 function calculateTotalprice(products) {
