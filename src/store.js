@@ -30,7 +30,7 @@ function findProducts(criterias) {
     return !criterias.belowCost || product.price <= criterias.belowCost;
   }).filter(function(product) {
     return !criterias.belowDuration || product.getDuration() <= criterias.belowDuration;
-  })
+  });
   return result;
 }
 
@@ -52,6 +52,9 @@ function toString(currency, rateCurrency) {
 
 function open() {
   console.log(toString());
+  service.getExchangeRateEUR(function(rateCurrency) {
+    console.log(toString('€', rateCurrency));
+  })
 }
 
 module.exports = {
